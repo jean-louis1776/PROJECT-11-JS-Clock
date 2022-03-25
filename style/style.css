@@ -1,11 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+:root {
+  /*========== Colors ==========*/
+  --hue-color: 240;
+  --first-color: hsl(var(--hue-color), 53%, 49%);
+  --title-color: hsl(var(--hue-color), 53%, 15%);
+  --text-color: hsl(var(--hue-color), 12%, 35%);
+  --text-color-light: hsl(var(--hue-color), 12%, 65%);
+  --white-color: #FFF;
+  --body-color: hsl(var(--hue-color), 24%, 94%);
+  /*========== Font and typography ==========*/
+  --body-font: 'Poppins', sans-serif;
+  --biggest-font-size: 3rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+  --tiny-font-size: .625rem;
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  /*========== Margenes Bottom ==========*/
+  --mb-0-25: .25rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2-5: 2.5rem;
+  /*========== z index ==========*/
+  --z-normal: 1;
+  --z-tooltip: 10;
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --biggest-font-size: 3.5rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+    --tiny-font-size: .75rem;
+  }
+}
+
+body.dark-theme {
+  --title-color: hsl(var(--hue-color), 12%, 95%);
+  --text-color: hsl(var(--hue-color), 12%, 75%);
+  --body-color: hsl(var(--hue-color), 10%, 16%);
+}
+
+/*========== Button Dark/Light ==========*/
+.clock__theme {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.25rem;
+  border-radius: 50%;
+  -webkit-box-shadow: inset -1px -1px 1px hsla(var(--hue-color), 0%, 100%, 1), inset 1px 1px 1px hsla(var(--hue-color), 30%, 86%, 1);
+          box-shadow: inset -1px -1px 1px hsla(var(--hue-color), 0%, 100%, 1), inset 1px 1px 1px hsla(var(--hue-color), 30%, 86%, 1);
+  cursor: pointer;
+  color: var(--first-color);
+}
+
+/*========== Box shadow Dark theme ==========*/
+.dark-theme .clock__circle {
+  -webkit-box-shadow: 6px 6px 16px hsla(var(--hue-color), 8%, 12%, 1), -6px -6px 16px hsla(var(--hue-color), 8%, 20%, 1), inset -6px -6px 16px hsla(var(--hue-color), 8%, 20%, 1), inset 6px 6px 12px hsla(var(--hue-color), 8%, 12%, 1);
+          box-shadow: 6px 6px 16px hsla(var(--hue-color), 8%, 12%, 1), -6px -6px 16px hsla(var(--hue-color), 8%, 20%, 1), inset -6px -6px 16px hsla(var(--hue-color), 8%, 20%, 1), inset 6px 6px 12px hsla(var(--hue-color), 8%, 12%, 1);
+}
+
+.dark-theme .clock__theme {
+  -webkit-box-shadow: inset -1px -1px 1px hsla(var(--hue-color), 8%, 20%, 1), inset 1px 1px 1px hsla(var(--hue-color), 8%, 12%, 1);
+          box-shadow: inset -1px -1px 1px hsla(var(--hue-color), 8%, 20%, 1), inset 1px 1px 1px hsla(var(--hue-color), 8%, 12%, 1);
+}
+
+/*=============== BASE ===============*/
 * {
-  margin: 0;
-  padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 body {
+  margin: 0;
+  font-family: var(--body-font);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 968px;
+  margin-left: var(--mb-1);
+  margin-right: var(--mb-1);
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+}
+
+.clock__container {
+  height: 100vh;
+  -ms-grid-rows: 1fr max-content;
+      grid-template-rows: 1fr -webkit-max-content;
+      grid-template-rows: 1fr max-content;
+}
+
+.clock__circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  -webkit-box-shadow: -6px -6px 16px var(--white-color), 6px 6px 16px hsla(var(--hue-color), 30%, 86%, 1), inset 6px 6px 16px hsla(var(--hue-color), 30%, 86%, 1), inset -6px -6px 16px var(--white-color);
+          box-shadow: -6px -6px 16px var(--white-color), 6px 6px 16px hsla(var(--hue-color), 30%, 86%, 1), inset 6px 6px 16px hsla(var(--hue-color), 30%, 86%, 1), inset -6px -6px 16px var(--white-color);
+  border-radius: 50%;
+  justify-self: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -15,103 +126,165 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  min-height: 100vh;
-  background-color: #091921;
 }
 
-.clock {
-  width: 350px;
-  height: 350px;
+.clock__content {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  row-gap: 3.5rem;
+}
+
+.clock__twelve, .clock__three, .clock__six, .clock__nine {
+  position: absolute;
+  width: 1rem;
+  height: 1px;
+  background-color: var(--text-color-light);
+}
+
+.clock__twelve, .clock__six {
+  -webkit-transform: translateX(-50%) rotate(90deg);
+      -ms-transform: translateX(-50%) rotate(90deg);
+          transform: translateX(-50%) rotate(90deg);
+}
+
+.clock__twelve {
+  top: 1.25rem;
+  left: 50%;
+}
+
+.clock__three {
+  top: 50%;
+  right: 0.75rem;
+}
+
+.clock__six {
+  bottom: 1.25rem;
+  left: 50%;
+}
+
+.clock__nine {
+  top: 50%;
+  left: 0.75rem;
+}
+
+.clock__rounder {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: var(--first-color);
+  border-radius: 50%;
+  border: 2px solid var(--body-color);
+  z-index: var(--z-tooltip);
+}
+
+.clock__hour, .clock__minutes, .clock__seconds {
+  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-image: url(../assets/clock.png);
-  background-size: cover;
-  border: 4px solid #091921;
-  border-radius: 50%;
-  -webkit-box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05), inset 0 -15px 15px rgba(255, 255, 255, 0.05), 0 15px 15px rgba(0, 0, 0, 0.3), inset 0 15px 15px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05), inset 0 -15px 15px rgba(255, 255, 255, 0.05), 0 15px 15px rgba(0, 0, 0, 0.3), inset 0 15px 15px rgba(0, 0, 0, 0.3);
 }
 
-.clock::before {
+.clock__hour {
+  width: 105px;
+  height: 105px;
+}
+
+.clock__hour::before {
   content: '';
   position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: #fff;
-  border-radius: 50%;
-  z-index: 10000;
+  background-color: var(--text-color);
+  width: 0.25rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  z-index: var(--z-normal);
 }
 
-.clock .hour,
-.clock .min,
-.clock .sec {
+.clock__minutes {
+  width: 136px;
+  height: 136px;
+}
+
+.clock__minutes::before {
+  content: '';
   position: absolute;
+  background-color: var(--text-color);
+  width: 0.25rem;
+  height: 4rem;
+  border-radius: 0.75rem;
+  z-index: var(--z-normal);
 }
 
-.clock .hour,
-.clock .hr {
-  width: 160px;
-  height: 160px;
+.clock__seconds {
+  width: 130px;
+  height: 130px;
 }
 
-.clock .min,
-.clock .mn {
-  width: 190px;
-  height: 190px;
+.clock__seconds::before {
+  content: '';
+  position: absolute;
+  background-color: var(--first-color);
+  width: 0.125rem;
+  height: 5rem;
+  border-radius: 0.75rem;
+  z-index: var(--z-normal);
 }
 
-.clock .sec,
-.clock .sc {
-  width: 230px;
-  height: 230px;
+.clock__logo {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  margin-bottom: var(--mb-2-5);
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-medium);
+  color: var(--text-color-light);
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
 }
 
-.clock .hr,
-.clock .mn,
-.clock .sc {
+.clock__logo:hover {
+  color: var(--first-color);
+}
+
+.clock__text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  position: absolute;
-  border-radius: 50%;
 }
 
-.clock .hr::before {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 80px;
-  background-color: #ff105e;
-  z-index: 10;
-  border-radius: 6px 6px 0 0;
+.clock__text-hour, .clock__text-minutes {
+  font-size: var(--biggest-font-size);
+  font-weight: var(--font-medium);
+  color: var(--title-color);
 }
 
-.clock .mn::before {
-  content: '';
-  position: absolute;
-  width: 4px;
-  height: 90px;
-  background-color: #fff;
-  z-index: 11;
-  border-radius: 6px 6px 0 0;
+.clock__text-ampm {
+  font-size: var(--tiny-font-size);
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+  margin-left: var(--mb-0-25);
 }
 
-.clock .sc::before {
-  content: '';
-  position: absolute;
-  width: 2px;
-  height: 150px;
-  background-color: #fff;
-  z-index: 12;
-  border-radius: 6px 6px 0 0;
+.clock__date {
+  text-align: center;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+}
+
+@media screen and (min-width: 968px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .clock__logo {
+    margin-bottom: 3rem;
+  }
 }
